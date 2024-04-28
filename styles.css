@@ -3,50 +3,63 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden; /* Hide scrollbar */
+    background-color: rgb(63, 63, 63);
 }
 
 #tabs {
     display: flex;
     align-items: center;
-    background-color: #f1f1f1;
-    border-bottom: 1px solid #ddd;
+    background-color: #373636;
+    border-bottom: 1px solid #fffcfc;
     padding: 8px 0;
 }
 
 .tab {
     padding: 8px 16px;
     border-radius: 16px 16px 0 0;
-    background-color: #fff;
+    background-color: #5d5a5a;
     cursor: pointer;
     margin-right: 8px;
     position: relative;
+    width: 500px;
 }
 
 .tab-url {
     width: calc(100% - 80px); /* Adjust width as needed */
     padding: 6px 8px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 20px;
     margin-right: 8px;
     margin-top: 30px;
     font-size: smaller;
+    background-color: #393838;
+    color: #fff;
+    outline: none; /* Remove default focus outline */
 }
 
+
+
+
 .close-tab {
-    position: absolute;
+    position:absolute;
     top: 4px;
     right: 4px;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    color: white;
+    
 }
 
 #addTab {
     padding: 8px 16px;
     border-radius: 16px 16px 0 0;
-    background-color: #fff;
+    background-color: #5d5a5a;
     cursor: pointer;
     margin-right: 8px;
+    width: auto;
+    font-size: x-large;
+    color: #fff;
 }
 
 .tab-content {
@@ -57,7 +70,8 @@ body {
 }
 
 .active-tab {
-    background-color: #eee;
+    background-color:#454444;
+    border: none;
 }
 
 .active-content {
@@ -65,25 +79,6 @@ body {
 }
 
 /* Modal styles */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
-}
 
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    z-index: 1000;
-    display: none;
-    /* Add more styles as needed */
-}
+
+

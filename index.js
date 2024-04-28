@@ -28,9 +28,22 @@ $(document).ready(function() {
         if (e.key === 'Enter') {
             const index = $(this).closest('.tab').index();
             const url = $(this).val();
-            $('#tabContents').children().eq(index).attr('src', url);
+            const proxyUrl = 'proxy.php?url=' + encodeURIComponent(url);
+    
+            $.ajax({
+                url: proxyUrl,
+                method: 'GET',
+                success: function(response) {
+                    $('#tabContents').children().eq(index).attr('src', 'data:text/html;charset=utf-8,' + encodeURIComponent(response));
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
         }
     });
+    
+    
 
     // Switch tabs
     $(document).on('click', '.tab', function() {
