@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Browser Tabs</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="tabs">
+       
+        <div class="tab"> 
+            <input type="text" class="tab-url" placeholder="Enter URL">
+            <button class="close-tab">&#10006;</button>
+        </div>
+        <div id="addTab" class="tab">+</div>
+    </div>
+    <div id="tabContents">
+        <iframe class="tab-content" src=""></iframe>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <!-- Forward and backward buttons, favorite and bookmark icons, profile avatar -->
+        <!-- Add your desired content here -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
