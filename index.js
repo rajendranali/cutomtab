@@ -9,7 +9,7 @@ $(document).ready(function() {
         `;
         $('#tabs').children().removeClass('active-tab');
         $('#tabs').append(tabContent);
-        $('#tabContents').append('<iframe class="tab-content" src=""></iframe>');
+        $('#tabContents').append('<div class="tab-content"></div>');
         $('#tabs').children().last().addClass('active-tab');
     });
 
@@ -23,27 +23,34 @@ $(document).ready(function() {
         $('#tabContents').children().eq(newIndex).addClass('active-content');
     });
 
-    // Load URL
-    $(document).on('keypress', '.tab-url', function(e) {
-        if (e.key === 'Enter') {
-            const index = $(this).closest('.tab').index();
-            const url = $(this).val();
-            const proxyUrl = 'proxy.php?url=' + encodeURIComponent(url);
-    
-            $.ajax({
-                url: proxyUrl,
-                method: 'GET',
-                success: function(response) {
-                    $('#tabContents').children().eq(index).attr('src', 'data:text/html;charset=utf-8,' + encodeURIComponent(response));
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                }
-            });
+    // Load URL on Enter key press
+// Function to convert various URLs to embeddable URLs
+function getEmbedUrl(url) {
+    let embedUrl = '';
+    // Extract the domain from the URL
+    const domain = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+    if (domain && domain.length > 1) {
+        // Append "/embed" after the domain
+        embedUrl = `${domain[0]}/embed${url.substring(domain[0].length)}`;
+    }
+    return embedUrl;
+}
+
+// Event listener for keypress on URL input
+$(document).on('keypress', '.tab-url', function(e) {
+    if (e.key === 'Enter') {
+        const index = $(this).closest('.tab').index();
+        const url = $(this).val();
+        const embedUrl = getEmbedUrl(url);
+        if (embedUrl) {
+            $('#tabContents').children().eq(index).html(`<iframe src="${embedUrl}" frameborder="0" width="100%" height="100%"></iframe>`);
+        } else {
+            // Handle invalid URLs
+            console.error('Invalid URL');
         }
-    });
-    
-    
+    }
+});
+
 
     // Switch tabs
     $(document).on('click', '.tab', function() {
@@ -54,3 +61,5 @@ $(document).ready(function() {
         $('#tabContents').children().eq(index).addClass('active-content');
     });
 });
+
+
